@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.suitscreen.app"
+    android:versionCode="1"
+    android:versionName="1.1" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+    
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.GET_TASKS" />
+	<!-- <uses-permission android:name="android.permission.BROADCAST_PACKAGE_ADDED" />
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_CHANGED" />    
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_INSTALL" />
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_REPLACED" /> -->
+	
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"      
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        
+
+        
+        <receiver 
+              android:name =".mobiles.ServiceBroadcastReceiver" />
+        
+       
+        
+        <service             
+            android:name ="com.suitscreen.app.mobiles.SocketService"
+            android:enabled="true">            
+            <intent-filter >
+                <action android:name="com.suitscreen.app.startservice"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+        
+       
+         
+         <provider
+            android:name=".providers.SuitProvider"
+            android:authorities="suitscreenapp"
+            android:multiprocess="false" />
+        
+
+    </application>
+
+</manifest>
